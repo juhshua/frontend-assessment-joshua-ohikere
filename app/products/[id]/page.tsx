@@ -249,7 +249,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
           {/* Tags */}
           {product.tags.length > 0 && (
             <div className="pt-6">
-              <h2 className="text-lg font-bold mb-3 text-white drop-shadow-md">Tags</h2>
+              <h2 className="text-lg font-bold mb-3 text-white drop-shadow-md">
+                Tags
+              </h2>
               <div className="flex flex-wrap gap-2">
                 {product.tags.map((tag) => (
                   <span

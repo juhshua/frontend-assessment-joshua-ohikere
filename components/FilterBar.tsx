@@ -41,7 +41,9 @@ export default function FilterBar({ categories }: FilterBarProps) {
         className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none bg-white cursor-pointer text-gray-700"
         aria-label="Filter by category"
       >
-        <option value="" className="text-gray-700">All Categories</option>
+        <option value="" className="text-gray-700">
+          All Categories
+        </option>
         {categories.map((category) => (
           <option key={category} value={category}>
             {category.charAt(0).toUpperCase() +
