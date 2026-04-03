@@ -87,6 +87,7 @@ export async function getProductById(id: string): Promise<Product> {
 /**
  * Fetch all available product categories
  * Used for the filter dropdown
+ * Only returns categories that actually have products
  */
 export async function getCategories(): Promise<string[]> {
   const url = `${BASE_URL}/products/categories`;
@@ -102,7 +103,31 @@ export async function getCategories(): Promise<string[]> {
     }
 
     const categories: { slug: string; name: string; url: string }[] = await response.json();
-    return categories.map((cat) => cat.slug);
+    
+    // Filter out categories with no products by checking each one
+    // This prevents showing empty category results
+    const validCategories: string[] = [];
+    
+    for (const category of categories) {
+      try {
+        // Quick check: fetch just 1 product to see if category has items
+        const checkUrl = `${BASE_URL}/products/category/${category.slug}?limit=1`;
+        const checkResponse = await fetch(checkUrl, { next: { revalidate: 86400 } });
+        
+        if (checkResponse.ok) {
+          const data = await checkResponse.json();
+          // Only include category if it has at least 1 product
+          if (data.products && data.products.length > 0) {
+            validCategories.push(category.slug);
+          }
+        }
+      } catch {
+        // Skip categories that error out
+        continue;
+      }
+    }
+    
+    return validCategories;
   } catch (error) {
     console.error('Error fetching categories:', error);
     return []; // Return empty array on error (graceful degradation)
