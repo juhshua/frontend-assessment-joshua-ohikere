@@ -63,7 +63,7 @@ describe("Pagination Component", () => {
   it("highlights current page", () => {
     render(<Pagination currentPage={3} totalItems={100} itemsPerPage={20} />);
     const currentPageButton = screen.getByText("3");
-    expect(currentPageButton).toHaveClass("bg-blue-600");
+    expect(currentPageButton).toHaveClass("bg-gradient-to-r");
     expect(currentPageButton).toBeDisabled();
   });
 

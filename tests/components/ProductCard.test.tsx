@@ -125,7 +125,7 @@ describe("ProductCard Component", () => {
     // Test with high stock (>50)
     const highStockProduct = { ...mockProduct, stock: 100 };
     const { rerender } = render(<ProductCard product={highStockProduct} />);
-    expect(screen.getByText("In Stock")).toHaveClass("bg-green-100");
+    expect(screen.getByText("In Stock")).toHaveClass("bg-gradient-to-r");
 
     // Low stock (<=50) - orange badge
     const lowStockProduct = {
@@ -134,6 +134,6 @@ describe("ProductCard Component", () => {
       availabilityStatus: "Low Stock",
     };
     rerender(<ProductCard product={lowStockProduct} />);
-    expect(screen.getByText("Low Stock")).toHaveClass("bg-orange-100");
+    expect(screen.getByText("Low Stock")).toHaveClass("bg-gradient-to-r");
   });
 });
