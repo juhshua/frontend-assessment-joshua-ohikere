@@ -1,0 +1,13 @@
+name = "frontend-assessment-joshua-ohikere"
+main = ".open-next/worker.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = ".open-next/assets"
+
+[observability]
+enabled = true
+
+[vars]
+NEXT_PUBLIC_APP_URL = "https://frontend-assessment-joshua-ohikere.workers.dev"
