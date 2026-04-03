@@ -1,12 +1,14 @@
 # Product Explorer - Checkit Frontend Assessment
 
-A modern, production-quality product browsing application built with Next.js 16, TypeScript, and Tailwind CSS. This project demonstrates advanced Next.js App Router patterns, server-side rendering, performance optimization, and clean component architecture.
+A modern, production-quality product browsing application built with Next.js 16, TypeScript, and Tailwind CSS. Features server-side rendering, edge deployment, comprehensive testing, and professional UI design with gradients and glassmorphism effects.
 
-🔗 **Live Demo**: [Coming Soon - Cloudflare Workers Deployment]
+🚀 **Live Demo**: https://frontend-assessment-joshua-ohikere.ohikerejoshua.workers.dev
+
+📖 **Full Implementation Guide**: [IMPLEMENTATION_GUIDE.md](./IMPLEMENTATION_GUIDE.md) - Complete technical deep-dive for interview preparation
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repository
@@ -24,7 +26,7 @@ npm run dev
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Features](#features)
 - [Tech Stack](#tech-stack)
@@ -37,7 +39,7 @@ npm run dev
 
 ---
 
-## ✨ Features
+## Features
 
 ### Core Requirements ✅
 
@@ -71,7 +73,7 @@ npm run dev
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 | Category    | Technology                     |
 | ----------- | ------------------------------ |
@@ -93,7 +95,7 @@ npm run dev
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 frontend-assessment-joshua-ohikere/
@@ -137,7 +139,7 @@ frontend-assessment-joshua-ohikere/
 
 ---
 
-## 🏗 Architecture Decisions
+## Architecture Decisions
 
 ### 1. Server Components by Default
 
@@ -190,7 +192,7 @@ frontend-assessment-joshua-ohikere/
 
 ---
 
-## ⚡ Performance Optimizations
+##  Performance Optimizations
 
 | Optimization               | Implementation                                         | Impact                                     |
 | -------------------------- | ------------------------------------------------------ | ------------------------------------------ |
@@ -259,27 +261,39 @@ npm test -- --watch
 
 ## 🚀 Deployment
 
-### Cloudflare Workers (Primary)
+### Cloudflare Workers (via GitHub Actions)
 
-This project uses **OpenNext Cloudflare adapter** for edge deployment:
+This project deploys to **Cloudflare Workers** using the **OpenNext adapter** for optimal edge performance.
 
-```bash
-# Install OpenNext
-npm install -D opennext-cloudflare
+**🔗 Live URL**: https://frontend-assessment-joshua-ohikere.ohikerejoshua.workers.dev
 
-# Build for Cloudflare
-npx opennext-cloudflare
+**Deployment Strategy**: Automated CI/CD via GitHub Actions because:
+- ✅ OpenNext has known Windows compatibility issues  
+- ✅ Linux build environment ensures reliable deployments  
+- ✅ Automated testing gates deployment
+- ✅ Professional workflow following industry best practices
 
-# Deploy
-npx wrangler deploy
+**Automated Flow** (on push to main):
+```
+GitHub Actions → Install → Test → Build Next.js → Build OpenNext → Deploy → Live ✅
 ```
 
-**Why Cloudflare over Vercel?**
+**Manual Deployment** (Linux/Mac/WSL only):
+```bash
+npm run build:workers    # Build for Cloudflare Workers
+npx wrangler deploy      # Deploy to edge network
+```
 
-✅ Global edge network (330+ cities vs 52)  
-✅ Zero cold starts  
-✅ Lower cost for high traffic  
-✅ Better alignment with the assessment's preference
+**Configuration Files**:
+- `.github/workflows/deploy.yml` - CI/CD automation
+- `open-next.config.ts` - OpenNext adapter settings
+- `wrangler.toml` - Cloudflare Workers configuration
+
+**Why Cloudflare?**
+- ✅ 300+ global edge locations (vs ~20 for Vercel)  
+- ✅ Zero cold starts with V8 isolates  
+- ✅ Assessment preference for Cloudflare Workers
+- ✅ Better cost efficiency at scale
 
 ---
 
@@ -373,10 +387,10 @@ lighthouse https://[your-deployment-url] --view
 ### Deliverables
 
 - [x] Public GitHub repository
-- [x] .env.example file
+- [x] .env.example file (not needed - no API keys required)
 - [x] Clean commit history
 - [x] Comprehensive README
-- [ ] Live deployment URL (pending deployment)
+- [x] Live deployment URL: https://frontend-assessment-joshua-ohikere.ohikerejoshua.workers.dev
 
 ---
 
@@ -402,6 +416,4 @@ lighthouse https://[your-deployment-url] --view
 
 5. **What Would You Change?**
    - "With more time, I'd implement React Suspense streaming for better perceived performance, add optimistic UI updates for search, and create E2E tests for critical user flows."
-     #   f r o n t e n d - a s s e s s m e n t - j o s h u a - o h i k e r e 
-      
-      
+
